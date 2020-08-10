@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center"
+    tools:context=".activities.MainActivity">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NUMBER ONE"
+        android:padding="@dimen/space_default"
+        android:onClick="FirstActivity"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:padding="@dimen/space_default"
+        android:layout_marginStart="@dimen/space_default"
+        android:layout_height="wrap_content"
+        android:onClick="SecondActivity"
+        android:text="NUMBER TWO"
+        android:textColor="@android:color/white"
+        android:background="#9C27B0"/>
+
+
+</LinearLayout>
