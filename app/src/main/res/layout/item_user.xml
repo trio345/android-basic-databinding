@@ -18,7 +18,7 @@
         app:cardCornerRadius="@dimen/radius"
         app:contentPadding="@dimen/space_default">
 
-        <android
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
@@ -47,7 +47,7 @@
                 android:layout_toEndOf="@+id/ivProfile"
                 tools:text="tristan@gmail.com" />
 
-        </android>
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
 
