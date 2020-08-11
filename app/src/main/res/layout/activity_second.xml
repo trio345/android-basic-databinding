@@ -1,9 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.SecondActivity">
+    android:layout_margin="@dimen/space_default">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activities.SecondActivity">
+
+        <ProgressBar
+            android:id="@+id/pbLoadingPost"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+        <EditText
+            android:id="@+id/etSearchPost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:hint="Masukkan kata kunci pencarian"
+            android:drawableEnd="@android:drawable/ic_menu_search"
+            android:autofillHints="SEARCH DATA"
+            android:inputType="text" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPosts"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:outlineAmbientShadowColor="@color/colorPrimaryDark"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            tools:listitem="@layout/post_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etSearchPost" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

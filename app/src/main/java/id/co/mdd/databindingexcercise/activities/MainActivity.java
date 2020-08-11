@@ -42,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-//    public void moveToSecondActivity(View view) {
-//        startActivity(new Intent(this, .class));
-//    }
+    public void moveToSecondActivity(View view) {
+        startActivity(new Intent(this, SecondActivity.class));
+    }
 
 
     public void moveToFirstActivity(View view) {

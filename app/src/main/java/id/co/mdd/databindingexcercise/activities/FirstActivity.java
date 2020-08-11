@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
@@ -41,6 +43,7 @@ public class FirstActivity extends AppCompatActivity {
     RecyclerView rvUsers;
     RecyclerView.Adapter adapter;
     UserService service;
+    UsersAdapter usersAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,20 +58,25 @@ public class FirstActivity extends AppCompatActivity {
         ivProfile = findViewById(R.id.ivProfile);
         etSearch = findViewById(R.id.etSearch);
 
+        usersAdapter = new UsersAdapter();
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        rvUsers.setLayoutManager(layoutManager);
+
+
         UserRepository userRepository = new UserRepository();
 
-
+        searchData();
 
         userRepository.service.getUsers(1).enqueue(new Callback<UserModel>() {
             @Override
             public void onResponse(Call<UserModel> call, Response<UserModel> response) {
-//                showLoading(false);
+                showLoading(false);
                 if(response.isSuccessful()){
                     if (response.body() != null) {
                         String jsonResponse = new Gson().toJson(response.body());
-                        adapter = new UsersAdapter(FirstActivity.this, response.body().getData());
-                        rvUsers.setLayoutManager(new LinearLayoutManager(FirstActivity.this));
-                        rvUsers.setAdapter(adapter);
+                        usersAdapter.setUsersAdapter(FirstActivity.this, response.body().getData());
+                        rvUsers.setAdapter(usersAdapter);
 
                     }
                 }
@@ -89,20 +97,33 @@ public class FirstActivity extends AppCompatActivity {
 
     }
 
+    private void searchData() {
+
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                usersAdapter.getFilter().filter(charSequence);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                usersAdapter.getFilter().filter(charSequence);
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                usersAdapter.getFilter().filter(editable);
+            }
+        });
+    }
+
 
     private void showLoading(boolean isLoading){
         if (isLoading){
             pbLoading.setVisibility(View.VISIBLE);
-            tvEmail.setVisibility(View.GONE);
-            tvFullName.setVisibility(View.GONE);
-            ivProfile.setVisibility(View.GONE);
-            etSearch.setVisibility(View.GONE);
         } else {
             pbLoading.setVisibility(View.GONE);
-            tvEmail.setVisibility(View.VISIBLE);
-            tvFullName.setVisibility(View.VISIBLE);
-            ivProfile.setVisibility(View.VISIBLE);
-            etSearch.setVisibility(View.VISIBLE);
         }
     }
 }
