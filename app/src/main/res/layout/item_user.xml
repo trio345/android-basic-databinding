@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -29,21 +27,22 @@
                 tools:src="@drawable/logo"/>
 
             <TextView
-                android:id="@+id/tvFullname"
+                android:id="@+id/tvFullName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="@tools:sample/full_names"
                 android:fontFamily="sans-serif-black"
                 android:textStyle="bold"
                 android:layout_marginTop="@dimen/space_default"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:layout_toEndOf="@+id/ivProfile"/>
 
             <TextView
+                android:id="@+id/tvEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_default"
-                android:layout_below="@+id/tvFullname"
+                android:layout_below="@+id/tvFullName"
                 android:layout_toEndOf="@+id/ivProfile"
                 tools:text="tristan@gmail.com" />
 

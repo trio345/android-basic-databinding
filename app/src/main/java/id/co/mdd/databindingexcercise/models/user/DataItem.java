@@ -1,18 +1,21 @@
 package id.co.mdd.databindingexcercise.models.user;
 
+import com.google.gson.annotations.SerializedName;
+
 public class DataItem{
-	private String lastName;
+
 	private int id;
 	private String avatar;
-	private String firstName;
 	private String email;
+	private String first_name;
+	private String last_name;
 
 	public void setLastName(String lastName){
-		this.lastName = lastName;
+		this.last_name = lastName;
 	}
 
 	public String getLastName(){
-		return lastName;
+		return last_name;
 	}
 
 	public void setId(int id){
@@ -32,11 +35,11 @@ public class DataItem{
 	}
 
 	public void setFirstName(String firstName){
-		this.firstName = firstName;
+		this.first_name = firstName;
 	}
 
 	public String getFirstName(){
-		return firstName;
+		return first_name;
 	}
 
 	public void setEmail(String email){

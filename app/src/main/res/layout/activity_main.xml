@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="NUMBER ONE"
         android:padding="@dimen/space_default"
-        android:onClick="FirstActivity"
+        android:onClick="moveToFirstActivity"
         android:textColor="@android:color/white"
         android:background="@color/colorPrimary"
         />
@@ -22,7 +22,6 @@
         android:padding="@dimen/space_default"
         android:layout_marginStart="@dimen/space_default"
         android:layout_height="wrap_content"
-        android:onClick="SecondActivity"
         android:text="NUMBER TWO"
         android:textColor="@android:color/white"
         android:background="#9C27B0"/>

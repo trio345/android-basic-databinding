@@ -7,6 +7,6 @@ public class UserRepository {
     public UserService service;
 
     public UserRepository() {
-        service = ApiUtil.request(UserService.class, ConstantsUtil.BASEURL);
+        service = ApiUtil.request(UserService.class, ConstantsUtil.BASE_URL);
     }
 }
