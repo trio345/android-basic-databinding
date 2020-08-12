@@ -1,26 +1,16 @@
 package id.co.mdd.databindingexcercise.viewmodels;
 
+import androidx.databinding.ObservableField;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import id.co.mdd.databindingexcercise.models.posts.PostModel;
+
 public class BaseViewModel extends ViewModel {
 
-    protected MutableLiveData<String> error = new MutableLiveData<>();
-    protected MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
+   public ObservableField<PostModel> post = new ObservableField<>();
 
-    public MutableLiveData<String> getError() {
-        return error;
-    }
-
-    public void setError(MutableLiveData<String> error) {
-        this.error = error;
-    }
-
-    public MutableLiveData<Boolean> getIsLoading() {
-        return isLoading;
-    }
-
-    public void setIsLoading(MutableLiveData<Boolean> isLoading) {
-        this.isLoading = isLoading;
+    public BaseViewModel(PostModel postModel) {
+        post.set(postModel);
     }
 }

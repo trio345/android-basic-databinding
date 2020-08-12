@@ -1,5 +1,7 @@
 package id.co.mdd.databindingexcercise.repositories.user;
 
+import java.util.ArrayList;
+
 import id.co.mdd.databindingexcercise.models.posts.PostModel;
 import id.co.mdd.databindingexcercise.models.user.DataItem;
 import id.co.mdd.databindingexcercise.models.user.UserModel;
@@ -13,5 +15,5 @@ public interface UserService {
     Call<UserModel> getUsers(@Query("?page") int page);
 
     @GET("posts")
-    Call<PostModel> getPosts();
+    Call<ArrayList<PostModel>> getPosts();
 }

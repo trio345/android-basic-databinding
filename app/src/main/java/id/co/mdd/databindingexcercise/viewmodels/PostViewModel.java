@@ -5,21 +5,37 @@ import androidx.lifecycle.MutableLiveData;
 import java.util.ArrayList;
 
 import id.co.mdd.databindingexcercise.models.posts.PostModel;
-import id.co.mdd.databindingexcercise.models.user.UserModel;
 import id.co.mdd.databindingexcercise.repositories.posts.PostRepository;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PostViewModel extends BaseViewModel{
-    private MutableLiveData<PostModel> data_post = new MutableLiveData<>();
+    private MutableLiveData<ArrayList<PostModel>> data_post = new MutableLiveData<ArrayList<PostModel>>();
+    private MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
 
-    public void fetchUsers(){
+    public MutableLiveData<Boolean> isLoading() {
+        return isLoading;
+    }
+
+    public MutableLiveData<String> getError() {
+        return error;
+    }
+
+    private MutableLiveData<String> error = new MutableLiveData<>();
+    private ArrayList<PostModel> temp = new ArrayList<>();
+
+    public PostViewModel(PostModel postModel) {
+        super(postModel);
+    }
+
+    public void fetchPosts(){
         isLoading.setValue(true);
         PostRepository postRepository = new PostRepository();
-        postRepository.service.getPosts().enqueue(new Callback<PostModel>() {
+
+        postRepository.service.getPosts().enqueue(new Callback<ArrayList<PostModel>>(){
             @Override
-            public void onResponse(Call<PostModel> call, Response<PostModel> response) {
+            public void onResponse(Call<ArrayList<PostModel>> call, Response<ArrayList<PostModel>> response) {
                 if (response.isSuccessful()){
                     if (response.body() != null){
                         data_post.setValue(response.body());
@@ -34,7 +50,7 @@ public class PostViewModel extends BaseViewModel{
             }
 
             @Override
-            public void onFailure(Call<PostModel> call, Throwable t) {
+            public void onFailure(Call<ArrayList<PostModel>> call, Throwable t) {
                 t.printStackTrace();
 
                 error.setValue(t.getMessage());
@@ -44,7 +60,7 @@ public class PostViewModel extends BaseViewModel{
 
     }
 
-    public MutableLiveData<PostModel> getPosts(){
+    public MutableLiveData<ArrayList<PostModel>> getPosts(){
         return data_post;
     }
 }

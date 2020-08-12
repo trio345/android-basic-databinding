@@ -30,6 +30,8 @@ import id.co.mdd.databindingexcercise.databinding.PostLayoutBinding;
 import id.co.mdd.databindingexcercise.models.posts.PostModel;
 import id.co.mdd.databindingexcercise.models.user.DataItem;
 import id.co.mdd.databindingexcercise.models.user.UserModel;
+import id.co.mdd.databindingexcercise.viewmodels.BaseViewModel;
+import id.co.mdd.databindingexcercise.viewmodels.factories.DetailPostViewModelFactory;
 import retrofit2.Callback;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> implements Filterable {
@@ -37,9 +39,14 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     private List<PostModel> posts = new ArrayList<>();
     private static Context context;
     private static List<PostModel> postsFiltered;
+    public PostListener postListener;
+
+    public interface PostListener {
+        void onClick(PostModel postModel);
+    }
 
 
-    public void setUsersAdapter(Context context, List posts) {
+    public void setPosts(List posts) {
         this.context = context;
         this.posts = posts;
         this.postsFiltered = posts;
@@ -59,7 +66,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull PostsAdapter.ViewHolder holder, int position) {
-        holder.bind(postsFiltered.get(position));
+        holder.bindData(posts.get(position));
     }
 
 
@@ -104,14 +111,21 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         PostLayoutBinding binding;
+        private static PostListener postListener;
+
         public ViewHolder(@NonNull PostLayoutBinding binding){
             super(binding.getRoot());
 
             this.binding = binding;
 
         }
-        public void bind(PostModel data){
-            binding.setPostModel(data);
+
+        public void bindData(PostModel postModel) {
+            BaseViewModel baseViewModel = new DetailPostViewModelFactory(postModel)
+                                            .create(BaseViewModel.class);
+            binding.setPostModel(baseViewModel);
+            binding.cardView.setOnClickListener(view -> postListener.onClick(postModel));
+
         }
     }
 }

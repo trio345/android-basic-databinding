@@ -8,7 +8,7 @@
     <data>
         <variable
             name="postModel"
-            type="id.co.mdd.databindingexcercise.models.posts.PostModel" />
+            type="id.co.mdd.databindingexcercise.viewmodels.BaseViewModel" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:text="@{postModel.title}"
+                android:text="@{postModel.post.title}"
                 android:textSize="18sp"
                 tools:text="sakldhaskdhlasjdlaskldaskhdanshkldhajskdhlkashdkhsakldhlsahdksalhdksahdsa"/>
             <TextView
@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="13sp"
-                android:text="@{postModel.body}"
+                android:text="@{postModel.post.body}"
                 tools:text="@tools:sample/lorem/random"/>
 
         </LinearLayout>
