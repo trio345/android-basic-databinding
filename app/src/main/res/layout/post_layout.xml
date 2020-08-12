@@ -28,6 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
+                android:text="@{postModel.title}"
                 android:textSize="18sp"
                 tools:text="sakldhaskdhlasjdlaskldaskhdanshkldhajskdhlkashdkhsakldhlsahdksalhdksahdsa"/>
             <TextView
@@ -35,6 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="13sp"
+                android:text="@{postModel.body}"
                 tools:text="@tools:sample/lorem/random"/>
 
         </LinearLayout>
